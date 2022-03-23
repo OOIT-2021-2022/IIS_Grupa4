@@ -38,6 +38,8 @@ public class Test {
 			}
 		}*/
 		
+		//Vezbe 2:
+		
 		//objekat je instanca klase i ima sve osnobine i ponasanja koja su definisana u klasi
 		//modeluje objekat (entitet) realnog sistema
 		//predstavlja pojavu klase cijim je konstruktorom kreiran 
@@ -63,11 +65,58 @@ public class Test {
 		Point point2 = new Point(10,10); 
 		System.out.println(point2.getY());
 		
-		Point p1 = new Point(50,50);
+		Point point3 = new Point(50,50);
 		//u metodi distance klase Point this.x se odnosi
 		//na atribut x objekta this - objekta p1 nad kojim je pozvana metoda
-		double distance = p1.distance(100, 100);
+		double distance = point3.distance(100, 100);
 		System.out.println(distance);
+		
+		//Vezbe 3:
+		Line line = new Line();
+		//atributi koji su slozenog tipa podatka se moraju eksplicitno inicijalizovati
+		//u suprotnom imaju null vrednost
+		System.out.println(line.getEndPoint());//null
+		
+		// 1. Inicijalizovati x koordinatu tacke p
+		// na vrednost y koordinate tacke p1
+		Point p = new Point(10,10);
+		Point p1 = new Point(20,20);
+		p.setX(p1.getY());
+		System.out.println(p.getX());//20
+		
+		// 2. Postaviti za pocetnu tacku linije l1 tacku p, a
+		// za krajnju tacku linije l1 tacku p1
+		Line l1 = new Line();
+		l1.setStartPoint(p);
+		l1.setEndPoint(p1);
+		
+		// 3. Postaviti y koordinatu krajnje tacke l1 na 23
+		Point endPoint = l1.getEndPoint();
+		endPoint.setX(23);
+		//l1.getEndPoint().setX(23);
+		
+		// 4. Inicijalizovati x koordinatu pocetne tacke linije l1
+		// na vrednost y koordinate krajnje tacke linije l1
+		l1.getStartPoint().setX(l1.getEndPoint().getY());
+		
+		//Uraditi:
+		// 5. Postaviti x koordinatu krajnje tacke l1 na vrednost
+		// duzine linije l1 umanjene za vrednost zbira x i y
+		// koordinate pocetne tacke linije l1
+
+
+		// 6. Postaviti x koordinatu tacke gore levo pravougaonika
+		// r1 na vrednost 10 i y koordinatu na vrednost 15
+
+
+		// 7. Postaviti centar kruga c1 na koordinate tacke
+		// gore levo od r1
+
+
+		// 8. Postaviti x koordinatu centra kruga c1 na vrednost razlike
+		// povrsine pravougaonika r1 i y koordinate pocetne tacke linije l1
+
+		
 	}
 
 }

@@ -16,6 +16,11 @@ public class Line {
 		this.endPoint = endPoint;
 	}
 	
+	public Line(Point startPoint, Point endPoint, boolean selected) {
+		this(startPoint, endPoint);
+		this.selected = selected;	
+	}
+	
 	public double length() {
 		//duzinu linije racunamo kao udaljenost endPoint tacke i startPoint tacke
 		//koristimo distance metodu definisanu u Point klasi
@@ -46,5 +51,24 @@ public class Line {
 		this.selected = selected;
 	}
 	
+	@Override
+	public String toString() {
+		//return "("+this.startPoint.getX()+","+this.startPoint.getY()+")"+"--> ("+this.endPoint.getX()+","+this.endPoint.getY()+")";
+		return this.startPoint + "-->" + this.endPoint;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Line) {
+			Line l = (Line)obj;
+			if(this.getStartPoint().equals(l.getStartPoint()) && this.getEndPoint().equals(l.getEndPoint())) {
+				return true;
+			} else {
+				return false;
+			}
+		}else {
+			return false;
+		}
+	}
 	
 }

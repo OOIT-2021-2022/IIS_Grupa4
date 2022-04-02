@@ -103,20 +103,80 @@ public class Test {
 		// 5. Postaviti x koordinatu krajnje tacke l1 na vrednost
 		// duzine linije l1 umanjene za vrednost zbira x i y
 		// koordinate pocetne tacke linije l1
-
+		l1.getEndPoint().setX((int)l1.length() - (l1.getStartPoint().getX() + l1.getStartPoint().getY()));
 
 		// 6. Postaviti x koordinatu tacke gore levo pravougaonika
 		// r1 na vrednost 10 i y koordinatu na vrednost 15
-
-
+		Rectangle r1 = new Rectangle(new Point(20,20),10,10);
+		r1.getUpperLeftPoint().setX(10);
+		r1.getUpperLeftPoint().setY(15);
+		
 		// 7. Postaviti centar kruga c1 na koordinate tacke
 		// gore levo od r1
-
+		Circle c1 = new Circle(new Point(30,30),10);
+		c1.setCenter(r1.getUpperLeftPoint());
 
 		// 8. Postaviti x koordinatu centra kruga c1 na vrednost razlike
 		// povrsine pravougaonika r1 i y koordinate pocetne tacke linije l1
-
+		c1.getCenter().setX((int)r1.area() - l1.getStartPoint().getY());
 		
+		//Vezbe 4
+		Point p_1 = new Point(10, 30);
+		Point p_2 = new Point(10, 30);
+		Point p_3 = p_1;
+		
+		//== poredi reference 
+		if(p_1 == p_2) {
+			System.out.println("p_1 i p_2 referenciraju isti objekat");
+		}else {
+			System.out.println("p_1 i p_2 ne referenciraju isti objekat");
+		}
+		if(p_1 == p_3) {
+			System.out.println("p_1 i p_3 referenciraju isti objekat");
+		}else {
+			System.out.println("p_1 i p_3 ne referenciraju isti objekat");
+		}
+		
+		//equals metoda je definisana u Object klasi tako da poredi reference
+		//da bismo imali logiku uporedjivanja vrednosti koordinata tacaka, moramo da redefinisemo metodu u klasi Point
+		//kada se equals metoda pozove, implementacija metode se najpre trazi u Point klasi, zatim u Object ukoliko ne postoji u Point klasi
+		if(p_1.equals(p_2)) {
+			System.out.println("p_1 i p_2 su isti");
+		}else {
+			System.out.println("p_1 i p_2 nisu isti");
+		}
+		if(p_1.equals(p_3)) {
+			System.out.println("p_1 i p_3 su isti");
+		}else {
+			System.out.println("p_1 i p_3 nisu isti");
+		}
+		
+		//instanceof operator proverava da li je objekat instanca odredjenog tipa
+		//klasa Object iz java.lang paketa je roditeljska (natklasa) svih klasa 
+		if(p_1 instanceof Point) { //true
+			System.out.println("p_1 je instanca klase Point");
+		}
+		if(p_1 instanceof Object){ //true
+			System.out.println("p_1 je instanca klase Object");
+		}
+		
+		int k = 5;
+		int j = 5;
+		System.out.println(j == k); //true
+		
+		//String je klasa
+		String e = "abc"; //kreira se objekat
+		String f = "abc"; //referencira se postojeci objekat
+		System.out.println(e == f);//true
+
+		String s1 = new String("Hello World");
+		String s2 = new String("Hello World"); // kreira se novi objekat 
+		System.out.println(s1 == s2); //false -> poredjenje referenci
+		System.out.println(s1.equals(s2)); // true -> poredjenje po vrednosti jer je equals metoda redefinisana u klasi String
+		
+		//kljucna rec static - vrsi povezivanje na nivou klase
+		//staticki atributi ili metode mogu se direktno pozvati nad klasom, tj. nije potrebno instancirati objekat klase
+		Point.staticMethod();
 	}
 
 }

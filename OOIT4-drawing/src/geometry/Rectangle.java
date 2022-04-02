@@ -16,6 +16,11 @@ public class Rectangle {
 		this.width = width;
 	}
 	
+	public Rectangle(Point upperLeftPoint, int height, int width, boolean selected) {
+		this(upperLeftPoint, height, width);
+		this.selected = selected;
+	}
+	
 	public double area() {
 		return (this.height * this.width);
 	}
@@ -54,6 +59,23 @@ public class Rectangle {
 
 	public void setSelected(boolean selected) {
 		this.selected = selected;
+	}
+	
+	@Override
+	public String toString() {
+		//return "Upper left point: (" + this.upperLeftPoint.getX() + "," + this.upperLeftPoint.getY() + "), width = "+ this.width + ", height = "+ this.height;
+		return "Upper left point: " + this.upperLeftPoint + ", width = "+ this.width + ", height = "+ this.height;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (o instanceof Rectangle) {
+			Rectangle r = (Rectangle)o;
+			return (r.getUpperLeftPoint().equals(this.upperLeftPoint) &&
+					r.getHeight() == this.height && r.getWidth() == this.width);
+		} else {
+			return false;
+		}
 	}
 	
 	

@@ -177,6 +177,20 @@ public class Test {
 		//kljucna rec static - vrsi povezivanje na nivou klase
 		//staticki atributi ili metode mogu se direktno pozvati nad klasom, tj. nije potrebno instancirati objekat klase
 		Point.staticMethod();
+		
+		//Vezbe 5
+		Donut donut = new Donut(new Point(10,10), 5, 10);
+		Donut dounut2 = new Donut(new Point(10,10), 3, 10);
+		/*prilikom izvrsavanja programa, trazenje implementacije equals metode otpocinje u klasi kojom je objekat 
+		inicijalizovan - u Donut klasi, zatim ukoliko u Donut klasi ne postoji implementirana metoda, 
+		trazenje implementacije se nastavlja hijerarhijski u nadklasama,
+		prvo u Circle klasi i na kraju Object klasi ako metoda nije implementirana ni u Circle klasi*/
+		System.out.println(donut.equals(dounut2));
+		
+		System.out.println(donut instanceof Object); //true
+		System.out.println(donut instanceof Circle); //true
+		System.out.println(donut instanceof Donut); //true
+		
 	}
 
 }

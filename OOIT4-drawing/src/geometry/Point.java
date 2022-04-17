@@ -109,4 +109,18 @@ public class Point {
 		System.out.println("Poziv staticke metode");
 	}
 	
+	public boolean contains(int x, int y) {
+		/*if(this.distance(x, y) <= 2) {
+			return true;
+		}else {
+			return false;
+		}*/
+		return this.distance(x, y) <= 2;
+	}
+	
+	public boolean contains(Point p) {
+		return this.distance(p.getX(), p.getY()) <= 2;
+	}
+	
+	
 }

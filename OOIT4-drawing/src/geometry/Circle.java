@@ -46,6 +46,28 @@ public class Circle {
 		this.selected = selected;
 	}
 	
+	public String toString() {
+		//center = (x,y), radius = radius
+		return "center = " + this.center.toString() + ", radius = " + this.radius;
+	}
 	
+	public boolean equals(Object obj) {
+		if(obj instanceof Circle) {
+			Circle c = (Circle)obj;
+			if(this.getCenter().equals(c.getCenter()) && this.getRadius() == c.getRadius()) {
+				return true;
+			}
+			return false;
+		}
+		return false;
+	}
+	
+	public boolean contains(int x, int y) {
+		return this.getCenter().distance(x, y) <= this.radius;
+	}
+	
+	public boolean contains(Point point) {
+		return this.getCenter().distance(point.getX(), point.getY()) <= this.radius;
+	}
 	
 }

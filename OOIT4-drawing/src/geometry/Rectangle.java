@@ -78,5 +78,20 @@ public class Rectangle {
 		}
 	}
 	
+	public boolean contains(int x, int y) {
+		if(x > this.upperLeftPoint.getX() && x < this.upperLeftPoint.getX() + width
+				&& y > this.upperLeftPoint.getY() && y < this.getUpperLeftPoint().getY() + height) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean contains(Point point) {
+		if(point.getX() > this.upperLeftPoint.getX() && point.getX() < this.upperLeftPoint.getX() + width
+				&& point.getY()> this.upperLeftPoint.getY() && point.getY() < this.getUpperLeftPoint().getY() + height) {
+			return true;
+		}
+		return false;
+	}
 	
 }

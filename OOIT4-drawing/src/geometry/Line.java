@@ -71,4 +71,14 @@ public class Line {
 		}
 	}
 	
+	public boolean contains(int x, int y) {
+		double d = this.getStartPoint().distance(x, y) + this.getEndPoint().distance(x, y);
+		return d - this.length() <= 2;
+	}
+	
+	public boolean contains(Point point) {
+		double d = this.getStartPoint().distance(point.getX(), point.getY()) + this.getEndPoint().distance(point.getX(), point.getY());
+		return d - this.length() <= 2;
+	}
+	
 }

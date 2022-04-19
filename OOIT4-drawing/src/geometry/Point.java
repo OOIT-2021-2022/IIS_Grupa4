@@ -1,4 +1,7 @@
-package geometry; 
+package geometry;
+
+import java.awt.Graphics;
+
 //klasa u Java programu jedinstveno odredjena specifikacijom koja sadrzi
 //naziv paketa i naziv kalse geometry.Point
 
@@ -6,7 +9,7 @@ package geometry;
 //modeluje stanja i ponasanja objekata koji pripadaju datoj klasi objekata realnog sistema
 //sablon za kreiranje objekata
 //slozen tip podatka
-public class Point {
+public class Point extends Shape {
 	
 	//atributi klase - modeluju stanje objekata
 	//inkapsulacija - skrivanje sadrzaja klase (od drugih klasa), ostvaruje se putem specifikatora pristupa
@@ -14,7 +17,6 @@ public class Point {
 	private int x;
 	private int y;
 	public static final int maxX = 200;
-	private boolean selected; //isSelected setSelected
 	
 	//konstruktor - posebna metoda klase koja sluzi za instanciranje objekata
 	//poziv konstruktora vrsi kreiranje objekta na heap-u
@@ -61,16 +63,8 @@ public class Point {
 		return y;
 	}
 	
-	public boolean isSelected() {
-		return selected;
-	}
-	
 	public void setY(int y_coord) {
 		y = y_coord;
-	}
-	
-	public void setSelected(boolean s) {
-		selected = s;
 	}
 	
 	//THIS - referencira objekat za koji je pozvana metoda 
@@ -120,6 +114,10 @@ public class Point {
 	
 	public boolean contains(Point p) {
 		return this.distance(p.getX(), p.getY()) <= 2;
+	}
+	
+	public void draw(Graphics g) {
+		g.drawLine(this.x, this.y, this.x, this.y);
 	}
 	
 	

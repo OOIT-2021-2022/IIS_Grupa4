@@ -1,5 +1,7 @@
 package geometry;
 
+import java.awt.Graphics;
+
 //nasledjivanje omogucava da se postojece klase koriste za kreiranje novih
 //nalsedjuju se svi atributi i metode koji nisu deklarisani kao private
 public class Donut extends Circle {
@@ -67,6 +69,15 @@ public class Donut extends Circle {
 	
 	public boolean contains(Point p) {
 		return super.contains(p) && this.getCenter().distance(p.getX(), p.getY()) >= this.innerRadius;
+	}
+	
+	public void draw(Graphics g) {
+		super.draw(g);
+		int xRect = this.getCenter().getX() - this.innerRadius;
+		int yRect = this.getCenter().getY() - this.innerRadius;
+		int a = this.innerRadius*2;
+		g.drawOval(xRect, yRect, a, a);
+		
 	}
 	
 }

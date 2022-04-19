@@ -191,6 +191,47 @@ public class Test {
 		System.out.println(donut instanceof Circle); //true
 		System.out.println(donut instanceof Donut); //true
 		
+		//Vezbe 6
+		/* POLIMORFIZAM 
+		 - opsta karakteristika polimorfizma je da se ista promenljiva, objekat ili metoda 
+		 ponasa razlicito u zavisnosti od uslova u kojima se referencira  
+		 - u kontekstu o-o prog. predstavlja koncept koji omogucava da se ista operacija
+		 (ponasanje/metoda) realizuje na drugaciji nacin (poly-vise, morf-oblika)
+		 1. primer -> sposobnost objekata koji pripadaju razlicitim potklasama iste klase objekata da
+		 da realizuju ista svojstva i operacije na razlicite nacine
+		 2. primer -> sposobnost da se jedna promenljiva moze koristiti kao referenca na objekte razlicitog
+		 tipa, sto ce uticati na izbor implementacije metode koja se poziva
+		 */		
+		
+		/*DINAMICKO (KASNO) POVEZIVANJE 
+		- odnosi se na povezivanje naziva metode sa implementacijom (desava se tek prilikom izvrsenja programa)
+		- omogucava da se u vreme pisanja programa neka promenljiva deklarise jednim tipom
+		dok se inicijalizacija vrsi pozivom konstruktora nekog drugog tipa (neke klase koja je izvedena):
+		*/
+		Circle donut_impl = new Donut(new Point(10,10),10,15);
+		donut_impl.toString();
+		/*
+		 - kompajler posmatra kojim tipom je promenljiva deklarisana (Circle) i dozvoljava poziv metoda koje postoje u toj klasi
+		 (iz primera - u klasi Circle postoji metoda toString)
+		 - interpreter prilikom izvrsenja programa posmatra kako je promenljiva inicijalizovana i izvrsice se 
+		 implementacija metode one klase kojom je promenljiva inicijalizovana 
+		 (iz primera - toString metoda klase Donut)
+		 */
+		
+		/*APSTRAKTNA KLASA 
+		 - pred interfejsa, predstavlja kocept za postizanje apstrakcije (proces skrivanja detalja implementacije)
+		 - u apstraktnu klasu treba izdvojiti sve atribute i metode koje su zajednicke za sve klase koje nasleduju tu klasu
+		 - nije moguce instancirati objekat apstraktne klase, cak i ako postoje definisani konstruktori
+		 - moze posedovati konstruktore, koji konstruisu delove objekata njenih potklasa
+		 - promenljiva moze biti deklarisana tipom apstraktne klase
+		 - moze sadrzati apstraktne i neapstraktne metode
+		 - ako poseduje abstract metodu, mora biti deklarisana kao apstraktna
+		  - klase koje nasledjuju apstraktnu klasu moraju napisati implementaciju za sve metode koje su apstraktne 
+		  (ako ih ne implementiraju, moraju biti definisane kao apstraktne)
+		 */
+		
+		//Shape shape = new Shape();
+		Shape lin = new Line(new Point(10,10), new Point(20,20));
 	}
 
 }

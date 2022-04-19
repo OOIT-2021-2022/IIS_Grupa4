@@ -1,9 +1,10 @@
 package geometry;
 
-public class Line {
+import java.awt.Graphics;
+
+public class Line extends Shape {
 	private Point startPoint; 
 	private Point endPoint;
-	private boolean selected;
 	
 	public Line() {
 		//inicijalizaciju mozemo raditi i u samoj klasi
@@ -42,14 +43,6 @@ public class Line {
 	public void setEndPoint(Point endPoint) {
 		this.endPoint = endPoint;
 	}
-
-	public boolean isSelected() {
-		return this.selected;
-	}
-
-	public void setSelected(boolean selected) {
-		this.selected = selected;
-	}
 	
 	@Override
 	public String toString() {
@@ -79,6 +72,10 @@ public class Line {
 	public boolean contains(Point point) {
 		double d = this.getStartPoint().distance(point.getX(), point.getY()) + this.getEndPoint().distance(point.getX(), point.getY());
 		return d - this.length() <= 2;
+	}
+	
+	public void draw(Graphics g) {
+		g.drawLine(this.startPoint.getX(), this.getStartPoint().getY(), this.endPoint.getX(), this.endPoint.getY());
 	}
 	
 }

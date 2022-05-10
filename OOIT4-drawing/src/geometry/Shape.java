@@ -2,7 +2,8 @@ package geometry;
 
 import java.awt.Graphics;
 
-public abstract class Shape {
+//u Javi nije moguce prosirivati vise klasa, ali je moguce implementirati vise interfejsa
+public abstract class Shape implements Moveable, Comparable {
 
 	protected boolean selected;
 	

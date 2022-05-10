@@ -71,5 +71,7 @@ public class DrawingPanel extends JPanel {
 				r.draw(g);
 			}*/
 		}
+		
+		
 	}
 }

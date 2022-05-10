@@ -120,5 +120,26 @@ public class Point extends Shape {
 		g.drawLine(this.x, this.y, this.x, this.y);
 	}
 	
+	public void moveBy(int x, int y) {
+		this.x += x;
+		this.y = this.y + y;
+	}
+	
+	public void moveTo(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	public int compareTo(Object obj) {
+		if(obj instanceof Point) {
+			/*double d1 = this.distance(0, 0);
+			double d2 =((Point)obj).distance(0, 0);
+			return (int)(d1-d2);*/
+			return (int) (this.distance(0, 0) - ((Point)obj).distance(0, 0));
+		}else {
+			return 0;
+		}
+	}
+	
 	
 }

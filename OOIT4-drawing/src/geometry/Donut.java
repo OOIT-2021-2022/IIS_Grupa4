@@ -80,4 +80,13 @@ public class Donut extends Circle {
 		
 	}
 	
+	@Override
+	public int compareTo(Object o) {
+		if (o instanceof Donut) {
+			return (int) (this.area() - ((Donut) o).area());
+		}
+		return 0;
+	}
+
+	
 }

@@ -1,5 +1,7 @@
 package geometry;
 
+import java.util.Arrays;
+
 public class Test {
 
 	//main metoda - ulazna tacka programa
@@ -232,6 +234,67 @@ public class Test {
 		
 		//Shape shape = new Shape();
 		Shape lin = new Line(new Point(10,10), new Point(20,20));
+		
+		//Vezbe 7
+		/*INTERFEJS
+		 - mehanizam za postizanje potpune apstrakcije i visestrukog nasledjivanja
+		 - ugovor o ponasanju objekata klase koja ga implementira (kako komunicirati sa objektom) 
+		 - nemaju konstruktore i ne mogu se instancirati, ali se mogu deklarisati
+		 promenljive tipa interfejsa
+		*/
+		
+		/*deklaracija promenljive tipom interfejsa (za instanciranje se koristi konstruktor
+		klase koja implementira interfejs):*/
+		Moveable moveLin = new Line();
+		
+		/*KOLEKCIJE 
+		- skladistenje vise podataka istog tipa u memoriji
+		- mogu biti:
+		STATICKE -> njihova velicina je fiksna i unapred poznata
+		DINAMICKE -> dinamicki se alocira memorija, promenljiva velicina kolekcije
+		*/
+		
+		/*NIZOVI
+		- staticke kolekcije -> prilikom inicijalizacije potrebno je definisati duzinu niza
+		i jednom definisana duzina se ne moze promeniti
+		*/
+		Point[] points = new Point[4];
+		points[0] = new Point(100,100);
+		points[1] = new Point(30,30);
+		points[2] = new Point(70,70);
+		points[3] = new Point(0,0);
+		
+		System.out.println("Ispis nesortiranog niza:");
+		for(int ind=0; ind<points.length; ind++) {
+			System.out.println(points[ind]);
+		}
+		
+		/*SORTIRANJE KOLEKCIJE
+		- Arrays klasa je Java klasa util paketa i poseduje STATICKU metodu sort koja sortira kolekciju
+		- u kolekciji koja se sortira MORAJU da se nalaze podaci tipa koji MORA da implementira
+		java Comparable interfejs, odnosno compareTo metodu
+		- poziv sort metode u pozadini poziva compareTo metodu
+		*/
+		
+		Arrays.sort(points);
+		System.out.println("Ispis sortiranog niza:");
+		for(int ind=0; ind<points.length; ind++) {
+			System.out.println(points[ind]);
+		}
+		
+		/*REFERENTI TIPOVI I RAD SA REFERENCAMA
+		- point_p i centar kruga circle_c su dve reference koje ukazuju na isti objekat u memoriji
+		- promena vrednosti objekta na koji ukazuje referenca point_p menja vrednosti objekta
+		na koji ukazuje circle_c (vazi i obrnuto), jer je u pitanju isti objekat 
+		*/
+		Point point_p = new Point(10,10);
+		Circle circle_c = new Circle(point_p, 10);
+		System.out.println(circle_c); //center = (10,10), radius = 10
+		point_p.moveTo(20, 20);
+		System.out.println(circle_c); //center = (20,20), radius = 10
+		circle_c.moveBy(10, 10);
+		System.out.println(circle_c); //center = (30,30), radius = 10
+		System.out.println(point_p); //(30,30)
 	}
 
 }

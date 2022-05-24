@@ -1,5 +1,6 @@
 package geometry;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 //nasledjivanje omogucava da se postojece klase koriste za kreiranje novih
@@ -77,6 +78,15 @@ public class Donut extends Circle {
 		int yRect = this.getCenter().getY() - this.innerRadius;
 		int a = this.innerRadius*2;
 		g.drawOval(xRect, yRect, a, a);
+		if (this.isSelected()) {
+			g.setColor(Color.BLUE);
+			g.drawRect(this.getCenter().getX() - 2, this.getCenter().getY() - 2, 4, 4);
+			g.drawRect(this.getCenter().getX() - this.innerRadius - 2, this.getCenter().getY() - 2, 4, 4);
+			g.drawRect(this.getCenter().getX() + this.innerRadius - 2, this.getCenter().getY() - 2, 4, 4);
+			g.drawRect(this.getCenter().getX() - 2, this.getCenter().getY() - this.innerRadius - 2, 4, 4);
+			g.drawRect(this.getCenter().getX() - 2, this.getCenter().getY() + this.innerRadius - 2, 4, 4);
+			g.setColor(Color.black);
+		}
 		
 	}
 	

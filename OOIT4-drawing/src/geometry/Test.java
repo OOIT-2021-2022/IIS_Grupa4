@@ -1,6 +1,9 @@
 package geometry;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
 
 public class Test {
 
@@ -295,6 +298,59 @@ public class Test {
 		circle_c.moveBy(10, 10);
 		System.out.println(circle_c); //center = (30,30), radius = 10
 		System.out.println(point_p); //(30,30)
+		
+		//Vezbe 9
+		//LISTE - DINAMICKE KOLEKCIJE
+		ArrayList<Shape> shapes = new ArrayList<Shape>();
+		shapes.add(new Point(10,10));
+		shapes.add(new Line(new Point(20,30), new Point(20,30)));
+		
+		Iterator<Shape> it = shapes.iterator();
+		while(it.hasNext()) {
+			System.out.println(it.next());
+		}
+		
+		//HASH MAPE
+		//Dinamicka kolekcija koja omogucava cuvanje uredjenih key-value parova
+		HashMap<String, Shape> hmShapes = new HashMap<String, Shape>();
+		hmShapes.put("point", p);
+		hmShapes.put("line", l1);
+		System.out.println(hmShapes.get("line"));
+
+		/*IZUZECI
+		IZUZETAK - mehanizam za upravljanje nepredvidjenim situacijama u vreme izvrsavanja
+		programa 
+		*/
+		//Bez obrade izuzetaka:
+		Shape[] shapesArray = new Shape[2];
+		/*System.out.println(shapesArray[2]);
+		System.out.println("Ispis nakon izuzetka");*/
+			
+		/*Obrada izuzetaka:
+		TRY - kod koji potencijalno moze dovesti do izuzetka
+		CATCH - "hvatanje" i obrada izuzetka ukoliko dodje do njega
+		FINALLY - blok koda koji se uvek izvrsava
+		*/
+		try {
+			Integer.parseInt("pet");
+			System.out.println(shapesArray[2]);
+		}catch(ArrayIndexOutOfBoundsException exc){
+			//exc.printStackTrace();
+			System.out.println("Ne postoji element sa indeksom 2");
+		}catch(NumberFormatException exc) {
+			System.out.println("Ne mogu da pretvorim u int");
+		}finally{
+			System.out.println("Ja se uvek izvrsavam");
+		}
+		
+		System.out.println("Ispis nakon izuzetka");
+		
+		Circle circle_exc = new Circle(new Point(50,50), 10);
+		try {
+			circle_exc.setRadius(-10);
+		}catch(Exception ec) {
+			System.out.println(ec.getMessage());
+		}
 	}
 
 }

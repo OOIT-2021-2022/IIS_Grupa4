@@ -1,5 +1,6 @@
 package geometry;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 //klasa u Java programu jedinstveno odredjena specifikacijom koja sadrzi
@@ -118,6 +119,11 @@ public class Point extends Shape {
 	
 	public void draw(Graphics g) {
 		g.drawLine(this.x, this.y, this.x, this.y);
+		if(this.selected) {
+			g.setColor(Color.BLUE);
+			g.drawRect(x-2, y-2, 4, 4);
+			g.setColor(Color.BLACK);
+		}
 	}
 	
 	public void moveBy(int x, int y) {

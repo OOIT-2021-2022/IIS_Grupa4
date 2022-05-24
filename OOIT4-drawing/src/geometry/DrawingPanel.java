@@ -1,11 +1,49 @@
 package geometry;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.JPanel;
 
 public class DrawingPanel extends JPanel {
 
+	//ukoliko lista nije inicijalizovana operatorom new, shapesList je null
+	private ArrayList<Shape> shapesList = new ArrayList<Shape>();
+	
+	public DrawingPanel() {
+		//3.
+		//VEZBE 9 Zadatak 1
+		Point p = new Point(50,50);
+		Line l1 = new Line(new Point (100,100), new Point (200,200));
+		Rectangle r1 = new Rectangle(l1.getEndPoint(), 100, 50);
+		Circle c1 = new Circle(new Point(500, 100), 80);
+		Donut d1 = new Donut(new Point(800, 100), 50, 25, true);
+		Rectangle k1 = new Rectangle(new Point(500, 500), 50, 50);
+				
+		ArrayList<Shape> shapes=new ArrayList<Shape>();
+		shapes.add(p);
+		shapes.add(l1);
+		shapes.add(c1);
+		shapes.add(d1);
+		shapes.add(k1);
+		Iterator<Shape> it=shapes.iterator();
+		while(it.hasNext()) {
+			it.next().moveBy(10, 0);
+		}
+
+	}
+	
+	//1.
+	public void setShapesList(ArrayList<Shape> list) {
+		this.shapesList = list;
+	}
+	
+	//2.
+	public ArrayList<Shape> getShapesList(){
+		return shapesList;
+	}
+	
 	/*
 	 paint metodu koristi Swing API kako bi na ekranu iscrtao kompnentu ili kontejner
 	 super.paint() poziva nasledjenu metodu implementiranu u JPanel klasi kako bismo
@@ -28,6 +66,7 @@ public class DrawingPanel extends JPanel {
 		Shape[] shapes = new Shape[5];
 		Point point = new Point(80,80);
 		//point.draw(g);
+		point.setSelected(true);
 		shapes[0] = point;
 		
 		Line line = new Line(new Point(120, 120), new Point(220, 120));
@@ -71,6 +110,14 @@ public class DrawingPanel extends JPanel {
 				r.draw(g);
 			}*/
 		}
+		
+		//VEZBE 9 Zadatak 2
+		shapesList.get(3).draw(g);
+		shapesList.get(shapesList.size()-1).draw(g);
+		shapesList.remove(1);
+		shapesList.get(1).draw(g);
+		shapesList.get(3).draw(g);
+		shapesList.add(3, new Line());
 		
 		
 	}

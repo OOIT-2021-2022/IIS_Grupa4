@@ -16,7 +16,6 @@ public class TestFrame {
 		// TODO Auto-generated method stub
 		JFrame frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
-		frame.setVisible(true);
 		DrawingPanel panel = new DrawingPanel();
 		
 		/*
@@ -34,6 +33,7 @@ public class TestFrame {
 		list.add(new Point(20,20));*/
 		
 		frame.getContentPane().add(panel);
+		frame.setVisible(true);
 	}
 
 }

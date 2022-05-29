@@ -21,13 +21,12 @@ public class DrawingPanel extends JPanel {
 		Donut d1 = new Donut(new Point(800, 100), 50, 25, true);
 		Rectangle k1 = new Rectangle(new Point(500, 500), 50, 50);
 				
-		ArrayList<Shape> shapes=new ArrayList<Shape>();
-		shapes.add(p);
-		shapes.add(l1);
-		shapes.add(c1);
-		shapes.add(d1);
-		shapes.add(k1);
-		Iterator<Shape> it=shapes.iterator();
+		shapesList.add(p);
+		shapesList.add(l1);
+		shapesList.add(c1);
+		shapesList.add(d1);
+		shapesList.add(k1);
+		Iterator<Shape> it=shapesList.iterator();
 		while(it.hasNext()) {
 			it.next().moveBy(10, 0);
 		}

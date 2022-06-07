@@ -18,6 +18,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import java.awt.Color;
 import javax.swing.JButton;
 
@@ -26,6 +29,7 @@ public class TestFrm extends JFrame {
 	private JPanel contentPane;
 	private ButtonGroup btnGroup = new ButtonGroup();
 	private DefaultListModel<String> dlm = new DefaultListModel<String>();
+	private DlgColor dlgColor;
 
 	/**
 	 * Launch the application.
@@ -48,7 +52,7 @@ public class TestFrm extends JFrame {
 	 */
 	public TestFrm() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 800, 700);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -71,6 +75,7 @@ public class TestFrm extends JFrame {
 		});
 		btnGroup.add(tglbtnZuta);
 		GridBagConstraints gbc_tglbtnZuta = new GridBagConstraints();
+		gbc_tglbtnZuta.fill = GridBagConstraints.HORIZONTAL;
 		gbc_tglbtnZuta.insets = new Insets(0, 0, 5, 5);
 		gbc_tglbtnZuta.gridx = 0;
 		gbc_tglbtnZuta.gridy = 0;
@@ -91,6 +96,7 @@ public class TestFrm extends JFrame {
 		});
 		btnGroup.add(tglbtnCrvena);
 		GridBagConstraints gbc_tglbtnCrvena = new GridBagConstraints();
+		gbc_tglbtnCrvena.fill = GridBagConstraints.HORIZONTAL;
 		gbc_tglbtnCrvena.insets = new Insets(0, 0, 5, 5);
 		gbc_tglbtnCrvena.gridx = 0;
 		gbc_tglbtnCrvena.gridy = 1;
@@ -110,8 +116,11 @@ public class TestFrm extends JFrame {
 			}
 			
 		});
+		
+		
 		btnGroup.add(tglbtnPlava);
 		GridBagConstraints gbc_tglbtnPlava = new GridBagConstraints();
+		gbc_tglbtnPlava.fill = GridBagConstraints.HORIZONTAL;
 		gbc_tglbtnPlava.insets = new Insets(0, 0, 5, 5);
 		gbc_tglbtnPlava.gridx = 0;
 		gbc_tglbtnPlava.gridy = 2;
@@ -124,6 +133,31 @@ public class TestFrm extends JFrame {
 		gbc_lblPlava.gridy = 2;
 		pnlCenter.add(lblPlava, gbc_lblPlava);
 		
+		JButton btnDodajBoju = new JButton("Dodaj boju");
+		btnDodajBoju.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dlgColor = new DlgColor();
+				dlgColor.setVisible(true);
+				if(dlgColor.isOk()) {
+					System.out.println("isOk is true");
+					int blue = dlgColor.getBlue();
+					int red = dlgColor.getRed();
+					int green = dlgColor.getGreen();
+					
+					String colors = dlgColor.getTxtRed().getText() + " " + dlgColor.getTxtGreen().getText() + " " + dlgColor.getTxtBlue().getText();
+					dlm.addElement(colors);
+					
+					pnlCenter.setBackground(new Color(red, green, blue));
+				}
+				
+			}
+		});
+		GridBagConstraints gbc_btnDodajBoju = new GridBagConstraints();
+		gbc_btnDodajBoju.insets = new Insets(0, 0, 5, 0);
+		gbc_btnDodajBoju.gridx = 3;
+		gbc_btnDodajBoju.gridy = 2;
+		pnlCenter.add(btnDodajBoju, gbc_btnDodajBoju);
+		
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
@@ -134,6 +168,9 @@ public class TestFrm extends JFrame {
 		JList list = new JList();
 		scrollPane.setViewportView(list);
 		list.setModel(dlm);
+		
+		
+		
 		
 		JPanel pnlNorth = new JPanel();
 		pnlNorth.setBackground(Color.PINK);
@@ -151,6 +188,44 @@ public class TestFrm extends JFrame {
 				JOptionPane.showMessageDialog(null, "Antistres dugme :)","Proba dugmeta", JOptionPane.INFORMATION_MESSAGE);				}
 		});
 		pnlSouth.add(btnKlikniMe);
+		
+		
+		JButton btnIzmeniBoju = new JButton("Izmeni boju");
+		btnIzmeniBoju.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int index = list.getSelectedIndex();
+				String colors = dlm.get(index);//34 54 56
+				String[] splits = colors.split(" ");
+				DlgColor dlgC = new DlgColor();
+				dlgC.getTxtRed().setText(splits[0]);
+				dlgC.getTxtGreen().setText(splits[1]);
+				dlgC.getTxtBlue().setText(splits[2]);
+				dlgC.setVisible(true);
+				
+				if(dlgC.isOk()) {
+					dlm.remove(index);
+					String newColorString = dlgC.getTxtRed().getText() + " " + dlgC.getTxtGreen().getText() + " " + dlgC.getTxtBlue().getText();
+					dlm.add(index, newColorString);
+					pnlCenter.setBackground(new Color(dlgC.getRed(), dlgC.getGreen(), dlgC.getBlue()));
+				}
+				
+				
+			}
+		});
+		btnIzmeniBoju.setEnabled(false);
+		GridBagConstraints gbc_btnIzmeniBoju = new GridBagConstraints();
+		gbc_btnIzmeniBoju.insets = new Insets(0, 0, 5, 0);
+		gbc_btnIzmeniBoju.gridx = 3;
+		gbc_btnIzmeniBoju.gridy = 1;
+		pnlCenter.add(btnIzmeniBoju, gbc_btnIzmeniBoju);
+		
+		list.addListSelectionListener(new ListSelectionListener() {
+			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				btnIzmeniBoju.setEnabled(true);
+			}
+		});
 	}
 
 }

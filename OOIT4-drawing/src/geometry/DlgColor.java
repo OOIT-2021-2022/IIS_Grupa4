@@ -151,7 +151,7 @@ public class DlgColor extends JDialog {
 							red = Integer.parseInt(txtRed.getText());
 							blue = Integer.parseInt(txtBlue.getText());
 							green = Integer.parseInt(txtGreen.getText());
-							if(red > 0 && red < 255) {
+							if(red > 0 && red < 255 && green > 0 && green < 255) {
 								ok = true;
 								setVisible(false);
 							}else {
